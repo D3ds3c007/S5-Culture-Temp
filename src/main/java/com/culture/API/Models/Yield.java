@@ -3,11 +3,8 @@ package com.culture.API.Models;
 import java.io.Serializable;
 import java.security.Timestamp;
 
-import com.fasterxml.jackson.databind.jsontype.DefaultBaseTypeLimitingValidator;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +25,6 @@ public class Yield implements Serializable{
     private Simulation simulation;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable=false)
     private Timestamp dateYield;
 
     @Basic
@@ -74,7 +70,7 @@ public class Yield implements Serializable{
     }
 
     public Yield() {
+
     } 
 
-    
 }

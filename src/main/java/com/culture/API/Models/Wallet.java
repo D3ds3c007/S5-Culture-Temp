@@ -3,7 +3,6 @@ package com.culture.API.Models;
 import java.io.Serializable;
 import java.util.List;
 
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,8 +14,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Wallet implements Serializable
-{
+public class Wallet implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idWallet;
@@ -31,10 +29,10 @@ public class Wallet implements Serializable
     @JoinColumn(name = "idOwner")
     private Owner owner;
 
+    @OneToMany(mappedBy = "wallet", fetch = FetchType.EAGER)
+    private List<WalletTransaction> walletTransactions;
 
-    @OneToMany(mappedBy = "wallet" , fetch = FetchType.EAGER)
-    private List<WalletTransaction> wallets;
-
+    
     public Wallet() {
     }
 

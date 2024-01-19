@@ -3,7 +3,6 @@ package com.culture.API.Models;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,8 +28,6 @@ public class WalletTransaction implements Serializable{
     
     @Basic
     private double amount;
-
-    
 
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp dateTransaction;
@@ -77,10 +74,5 @@ public class WalletTransaction implements Serializable{
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
     }
-
-    
-    
-
-
 
 }

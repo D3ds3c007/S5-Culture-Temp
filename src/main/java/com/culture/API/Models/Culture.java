@@ -1,6 +1,9 @@
 package com.culture.API.Models;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.culture.API.Repository.CultureRepository;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -17,26 +20,28 @@ public class Culture implements Serializable{
     private int idCulture;
 
     @Basic
-    private String name;
+    private String name;///nom de culture
 
     @Basic
-    private double seedQuantity;
+    private double seedQuantity; ///Quantite semence
 
     @Basic
-    private double yieldQuantity;
+    private double yieldQuantity; /// Quantite rendement maximum par m2
 
     @Basic
-    private int unit; // 1 || 2
+    private int unit; // 1 || 2  ///Unite
 
     @Basic
-    private double seedPrice;
+    private double seedPrice;/// prix semence
 
     @Basic
-    private double yieldPrice;
+    private double yieldPrice;/// prix rendement
 
     @ManyToOne()
-    @JoinColumn(name="idGroundType")
+    @JoinColumn(name="idGroundType")/// Type de sol
     private GroundType groundType;
+
+    public Culture(){}
 
 
     public int getIdCulture() {
@@ -103,8 +108,7 @@ public class Culture implements Serializable{
         this.groundType = groundType;
     }
 
-    public Culture(int idCulture, String name, double seedQuantity, double yieldQuantity, int unit, double seedPrice,
-            double yieldPrice, GroundType groundType) {
+    public Culture(int idCulture, String name, double seedQuantity, double yieldQuantity, int unit, double seedPrice, double yieldPrice, GroundType groundType) {
         this.idCulture = idCulture;
         this.name = name;
         this.seedQuantity = seedQuantity;
@@ -114,9 +118,18 @@ public class Culture implements Serializable{
         this.yieldPrice = yieldPrice;
         this.groundType = groundType;
     }
+     
 
-    public Culture(){
+    public static Culture saveCulture(Culture culture, CultureRepository cr) throws Exception{
 
+       Culture c =  cr.save(culture);
+        
+       return c;
     }
-    
+
+    public static List<Culture> findAll(CultureRepository cr) throws Exception
+    {
+        List<Culture> c = cr.findAll();
+        return c;
+    }
 }

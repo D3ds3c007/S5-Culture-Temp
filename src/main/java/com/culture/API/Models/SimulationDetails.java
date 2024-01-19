@@ -20,7 +20,6 @@ public class SimulationDetails implements Serializable{
     @JoinColumn(name="idSimulation")
     private Simulation simulation;
 
-
     @ManyToOne
     @JoinColumn(name="idAction")
     private Action action;
@@ -83,4 +82,5 @@ public class SimulationDetails implements Serializable{
     {
         
     }
+    
 }

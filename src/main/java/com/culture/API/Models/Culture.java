@@ -115,11 +115,8 @@ public class Culture implements Serializable{
         this.groundType = groundType;
     }
 
-    public Culture(){}
+    public Culture(){
 
-
-
-
-
+    }
     
 }

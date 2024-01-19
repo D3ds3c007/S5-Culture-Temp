@@ -2,7 +2,6 @@ package com.culture.API.Models;
 
 import java.io.Serializable;
 import java.security.Timestamp;
-import java.util.Calendar;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -75,4 +74,5 @@ public class Simulation implements Serializable{
     {
         
     }
+    
 }

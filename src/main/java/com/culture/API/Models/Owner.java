@@ -13,8 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Owner implements Serializable
-{
+public class Owner implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOwner;
@@ -37,8 +36,6 @@ public class Owner implements Serializable
     @OneToMany(mappedBy = "owner" , fetch = FetchType.EAGER)
     private List<Field> fields;
 
-   
-
     public Owner() {
     }
 
@@ -46,8 +43,8 @@ public class Owner implements Serializable
         return idOwner;
     }
 
-    public void setIdUser(int idUser) {
-        this.idOwner = idUser;
+    public void setIdOwner(int idOwner) {
+        this.idOwner = idOwner;
     }
 
     public String getName() {
@@ -74,8 +71,6 @@ public class Owner implements Serializable
         this.pwd = pwd;
     }
 
-    
-
     public Wallet getWallet() {
         return wallet;
     }
@@ -92,9 +87,13 @@ public class Owner implements Serializable
         this.privilege = privilege;
     }
 
+    public List<Field> getFields() {
+        return fields;
+    }
 
-    
-
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
+    }
 
 
 }

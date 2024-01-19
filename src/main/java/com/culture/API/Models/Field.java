@@ -1,14 +1,18 @@
 package com.culture.API.Models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
 @Entity
 public class Field implements Serializable{
     @Id
@@ -21,13 +25,16 @@ public class Field implements Serializable{
     @Basic
     private double longitude;
 
-    
     @ManyToOne()
     @JoinColumn(name = "idOwner")
     private Owner owner;
 
+    @OneToMany(mappedBy = "field", fetch = FetchType.EAGER)
+    private List<Plot> plots;
+
 
     public Field() {
+
     }
 
     public int getIdField() {
@@ -54,8 +61,20 @@ public class Field implements Serializable{
         this.longitude = longitude;
     }
 
-   
-    
+    public Owner getOwner() {
+        return owner;
+    }
 
-    
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public List<Plot> getPlots() {
+        return plots;
+    }
+
+    public void setPlots(List<Plot> plots) {
+        this.plots = plots;
+    }
+
 }

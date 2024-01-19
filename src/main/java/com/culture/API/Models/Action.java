@@ -16,6 +16,7 @@ public class Action implements Serializable{
 
     @Basic
     private String name;
+    
 
     public int getIdAction() {
         return idAction;

@@ -1,7 +1,10 @@
 package com.culture.API.Models;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
+
+import com.culture.API.Repository.FieldRepository;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -27,6 +30,7 @@ public class Field implements Serializable{
 
     @ManyToOne()
     @JoinColumn(name = "idOwner")
+
     private Owner owner;
 
     @OneToMany(mappedBy = "field", fetch = FetchType.EAGER)
@@ -75,6 +79,16 @@ public class Field implements Serializable{
 
     public void setPlots(List<Plot> plots) {
         this.plots = plots;
+    }
+
+    public static Field saveField(Field f, FieldRepository field) throws SQLException{
+        Field fi = field.save(f);
+        return fi;
+    }
+
+    public static List<Field> findAll(FieldRepository fi) throws SQLException{
+        List<Field> listFields = fi.findAll();
+        return listFields;
     }
 
 }

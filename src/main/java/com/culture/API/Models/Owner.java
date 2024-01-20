@@ -1,7 +1,10 @@
 package com.culture.API.Models;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
+
+import com.culture.API.Repository.OwnerRepository;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -11,7 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-
+import jakarta.persistence.Transient;
 @Entity
 public class Owner implements Serializable{
     @Id
@@ -34,9 +37,27 @@ public class Owner implements Serializable{
     private int privilege;
 
     @OneToMany(mappedBy = "owner" , fetch = FetchType.EAGER)
+    @Transient
     private List<Field> fields;
 
     public Owner() {
+    }
+    
+    public Owner(int idOwner,String email, String name, int privilege, String pwd) {
+        this.idOwner = idOwner;
+        this.name = name;
+        this.email = email;
+        this.pwd = pwd;
+        this.privilege = privilege;
+    }
+    public Owner(int idOwner, String name, String email, String pwd, Wallet wallet, int privilege, List<Field> fields) {
+        this.idOwner = idOwner;
+        this.name = name;
+        this.email = email;
+        this.pwd = pwd;
+        this.wallet = wallet;
+        this.privilege = privilege;
+        this.fields = fields;
     }
 
     public int getIdOwner() {
@@ -95,5 +116,13 @@ public class Owner implements Serializable{
         this.fields = fields;
     }
 
+    public static Owner saveOwner(Owner o, OwnerRepository or) throws SQLException{
+        Owner ow = or.save(o);
+        return ow;
+    }
+    public static List<Owner> findAllOwner(OwnerRepository or) throws SQLException{
+        List<Owner> o = or.findAll();
+        return o;
+    }
 
 }

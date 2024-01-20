@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import com.culture.API.Repository.*;
 
 @Entity
 public class Plot implements Serializable {
@@ -53,6 +54,11 @@ public class Plot implements Serializable {
 
     public Plot(){
 
+    }
+
+    public static Plot savePlot(Plot plot, PlotRepository plotRepository){
+        Plot plot2 = plotRepository.save(plot);
+        return plot2;
     }
 
 }
